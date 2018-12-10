@@ -1,52 +1,57 @@
-<div>
-  <a [routerLink]="['/checking']">Checking</a>
-  <a [routerLink]="['/saving']">Savings</a>
-</div>
-
 <div class='banner'>
   <div class='textBanner'>
     <div>
-      Total Earnings: 
+      Total Earnings: {{total | currency:'USD'}}
     </div>
   </div>
 </div>
 
 <div class='checking'>
   <mat-card>
-    <mat-card-header>
-      
+    <mat-card-header class='checkingHeader'>
+      CHECKING
     </mat-card-header>
     <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
+      <p class='amounts'>
+        {{checkings | currency:'USD'}}
+      </p>
+      <p class='descriptions'>
+        View your checking account.
+        <br/>
+        Deposit into your account, pay your bills, and transfer over to your savings account.
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
+      <button mat-raised-button color="primary" (click)='goToChecking()'>CHECKING</button>
     </mat-card-actions>
   </mat-card>
 </div>
 
 <div class='saving'>
   <mat-card>
-    <mat-card-header>
-      
+    <mat-card-header class='savingsHeader'>
+      SAVINGS
     </mat-card-header>
     <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
+      <p class='amounts'>
+        {{savings | currency:'USD'}}
+      </p>
+      <p class='descriptions'>
+        View your savings account.
+        <br/>
+        Check your earnings, deposit into your account, and transfer over to your checking account.
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
+      <button mat-raised-button color="primary" (click)='goToSavings()'>SAVINGS</button>
     </mat-card-actions>
   </mat-card>
 </div>
+
+<div class='logout'>
+  <button mat-raised-button color="warn" (click)='logOut()'>Logout</button>
+</div>
+
+
 
 <router-outlet></router-outlet>

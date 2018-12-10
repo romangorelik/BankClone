@@ -1,9 +1,20 @@
 .checking {
   position: absolute;
   top: 25%;
-  left: 22%;
+  left: 15%;
   text-align: center;
-  width: 25%;
+  width: 35%;
+}
+
+.checkingHeader {
+  font-size: 35px;
+  margin-left: 25%;
+}
+
+.logout {
+  position: absolute;
+  top: 65%;
+  left: 15%;
 }
 
 .saving {
@@ -11,14 +22,19 @@
   top: 25%;
   left: 52%;
   text-align: center;
-  width: 25%;
+  width: 35%;
+}
+
+.savingsHeader {
+  font-size: 35px;
+  margin-left: 27%;
 }
 
 .banner {
   position: absolute;
   top: 2%;
-  left: 22%;
-  width: 55%;
+  left: 15%;
+  width: 72%;
   background: rgba(106,201,207, 0.3);
   font-size: 48px;
   height: 20%;
@@ -34,4 +50,15 @@
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   color: #074138;
+}
+
+.amounts {
+  font-size: 80px;
+  margin: 10px 0px 10px 0px;
+}
+
+.descriptions {
+  font-size: 18px;
+  width: 90%;
+  margin: 0 auto;
 }
