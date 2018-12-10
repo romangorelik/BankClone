@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import firebase from '../helpers/firebase.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +12,7 @@ export class SignUpComponent implements OnInit {
   password: string;
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,8 +22,8 @@ export class SignUpComponent implements OnInit {
       .auth()
       .createUserWithEmailAndPassword(this.email, this.password)
       .then(response => {
+        this.router.navigateByUrl('/home');
         console.log("Created user successfully", response)
-        return response.user.uid
       })
       .catch(function(error) {
         alert('Email is already taken')
