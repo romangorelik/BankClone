@@ -1,0 +1,54 @@
+.middle {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  text-align: center;
+  width: 20%;
+  margin: -100px 0 0 -150px;
+}
+
+.card {
+  background: rgba(106,201,207, 0.5);
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.title {
+  margin-left: 50px;
+}
+
+.login {
+  margin-top: 15px;
+}
+
+/* Link styling */
+
+a:link {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+}
+
+a:active {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+}
+
+/*******************/
