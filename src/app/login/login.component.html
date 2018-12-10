@@ -6,21 +6,22 @@
 
     <mat-card-content>
       <mat-form-field>
-        <input matInput placeholder="Username">
+        <input matInput placeholder="Email" [(ngModel)]='email'>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Password" type='password'>
+        <input matInput placeholder="Password" type='password' [(ngModel)]='password'>
       </mat-form-field>
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button>Login</button>
+      <button mat-button (click)='loginWithEmail()'>Login</button>
     </mat-card-actions>
   </mat-card>
 
   <div class='login'>
     <a [routerLink]="['/signup']">CREATE A NEW ACCOUNT</a>
   </div>
+
 </div>
 
 <router-outlet></router-outlet>
