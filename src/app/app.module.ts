@@ -9,13 +9,17 @@ import { LoginComponent } from './login/login.component'
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { CheckingComponent } from './checking/checking.component';
+import { SavingsComponent } from './savings/savings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    HomePageComponent
+    HomePageComponent,
+    CheckingComponent,
+    SavingsComponent
   ],
   imports: [
     BrowserModule,

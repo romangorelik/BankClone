@@ -1,0 +1,37 @@
+.checking {
+  position: absolute;
+  top: 25%;
+  left: 22%;
+  text-align: center;
+  width: 25%;
+}
+
+.saving {
+  position: absolute;
+  top: 25%;
+  left: 52%;
+  text-align: center;
+  width: 25%;
+}
+
+.banner {
+  position: absolute;
+  top: 2%;
+  left: 22%;
+  width: 55%;
+  background: rgba(106,201,207, 0.3);
+  font-size: 48px;
+  height: 20%;
+  border-radius: 5px;
+  box-shadow: 1px 1px;
+  display: table; 
+  overflow: hidden;
+}
+
+.textBanner {
+  display: table-cell; 
+  vertical-align: middle;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: #074138;
+}
