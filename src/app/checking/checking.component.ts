@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-checking',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _location: Location) 
+  {}
+
+  backClicked() {
+    this._location.back();
+  }
 
   ngOnInit() {
   }

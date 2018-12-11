@@ -18,7 +18,8 @@ export class SignUpComponent implements OnInit {
   }
 
   createWithEmail() {
-    return firebase
+    if (this.password.length >= 6) {
+      return firebase
       .auth()
       .createUserWithEmailAndPassword(this.email, this.password)
       .then(response => {
@@ -29,6 +30,9 @@ export class SignUpComponent implements OnInit {
         alert('Email is already taken')
         console.error(error)
       })
+    } else {
+      alert('Password must be 6 or more characters.')
+    }
   }
 
 }
