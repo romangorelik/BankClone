@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
     this.sharedService.currentMessage.subscribe(email => this.email = email)
   }
 
+  clearLogEmail() {
+    this.sharedService.changeMessage('')
+  }
+
   loginWithEmail() {
     return firebase
       .auth()

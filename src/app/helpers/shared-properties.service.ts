@@ -14,4 +14,14 @@ export class SharedPropertiesService {
     this.messageSource.next(sharedEmail)
   }
 
+  private registerMessage = new BehaviorSubject("");
+  regMessage = this.registerMessage.asObservable();
+
+
+  changeRegisterMessage(sharedEmail: string) {
+    this.registerMessage.next(sharedEmail)
+  }
+
+  
+
 }

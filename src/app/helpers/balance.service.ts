@@ -9,12 +9,16 @@ export class BalanceService {
 
   constructor(private http: HttpClient) { }
 
-  getChecking(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/checking')
+  getChecking(accountEmail: string): Observable<any> {
+    return this.http.get<any>('http://localhost:3000/checking', { params: {email: accountEmail}})
   }
 
-  getSavings(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/savings')
+  getSavings(accountEmail: string): Observable<any> {
+    return this.http.get<any>('http://localhost:3000/savings', { params: {email: accountEmail}})
+  }
+
+  registerUser(newEmail: string) {
+    return this.http.post("http://localhost:3000/users", {"email": newEmail})
   }
   
 }

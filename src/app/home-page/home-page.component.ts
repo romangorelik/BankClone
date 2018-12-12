@@ -19,20 +19,36 @@ export class HomePageComponent implements OnInit {
   constructor(private router: Router, private service: BalanceService, private sharedService: SharedPropertiesService) { }
 
   ngOnInit() {
+    this.checkWhichEmail();
     this.getCheckingForUser();
     this.getSavingsForUser();
-    this.sharedService.currentMessage.subscribe(sharedEmail => this.email = sharedEmail)
+  }
+
+  checkWhichEmail() {
+    let x;
+    let y;
+
+    this.sharedService.currentMessage.subscribe(sharedEmail => x = sharedEmail)
+    this.sharedService.regMessage.subscribe(sharedEmail => y = sharedEmail)
+
+    if (x.length > y.length) {
+      this.email = x
+    } else if (x.length < y.length) {
+      this.email = y
+    } else {
+      this.email = x
+    }
   }
 
   getCheckingForUser(): void {
-    this.service.getChecking().subscribe(checking => {
+    this.service.getChecking(this.email).subscribe(checking => {
       this.checkings = checking.checking
       this.total += checking.checking
     })
   }
 
   getSavingsForUser(): void {
-    this.service.getSavings().subscribe(savings => {
+    this.service.getSavings(this.email).subscribe(savings => {
       this.savings = savings.savings
       this.total += savings.savings
     })
@@ -52,6 +68,7 @@ export class HomePageComponent implements OnInit {
       .signOut()
       .then((response) => {
         this.sharedService.changeMessage('')
+        this.sharedService.changeRegisterMessage('')
         this.router.navigateByUrl('/login')
       });
   }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import firebase from '../helpers/firebase.js';
 import { Router } from '@angular/router';
 
+import { BalanceService } from '../helpers/balance.service'
+import { SharedPropertiesService } from '../helpers/shared-properties.service'
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -12,9 +15,14 @@ export class SignUpComponent implements OnInit {
   password: string;
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private balance: BalanceService, private sharedService: SharedPropertiesService) { }
 
   ngOnInit() {
+    this.sharedService.regMessage.subscribe(email => this.email = email)
+  }
+
+  clearRegEmail() {
+    this.sharedService.changeRegisterMessage('')
   }
 
   createWithEmail() {
@@ -23,7 +31,9 @@ export class SignUpComponent implements OnInit {
       .auth()
       .createUserWithEmailAndPassword(this.email, this.password)
       .then(response => {
-        this.router.navigateByUrl('/home');
+        this.balance.registerUser(this.email).subscribe()
+        this.sharedService.changeRegisterMessage(this.email)
+        setTimeout(() => {this.router.navigateByUrl('/home')}, 1000)
         console.log("Created user successfully", response)
       })
       .catch(function(error) {
