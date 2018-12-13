@@ -17,8 +17,12 @@ export class BalanceService {
     return this.http.get<any>('http://localhost:3000/savings', { params: {email: accountEmail}})
   }
 
-  registerUser(newEmail: string) {
-    return this.http.post("http://localhost:3000/users", {"email": newEmail})
+  registerUser(newEmail: string): Observable<any> {
+    return this.http.post<any>("http://localhost:3000/users", {"email": newEmail})
+  }
+
+  addCheckingDeposit(accountEmail: string, amount: number): Observable<any> {
+    return this.http.patch<any>("http://localhost:3000/updatechecking", {email: accountEmail, deposit: amount})
   }
   
 }

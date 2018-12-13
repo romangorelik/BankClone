@@ -16,7 +16,7 @@
         <mat-form-field>
           <input matInput type="number" placeholder="Enter Amount" [(ngModel)]="deposit">
         </mat-form-field>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="depositToAccount()">
           <mat-icon>add_box</mat-icon>
         </button>
       </div>

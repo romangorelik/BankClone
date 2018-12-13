@@ -45,6 +45,13 @@ export class CheckingComponent implements OnInit {
     })
   }
 
+  depositToAccount(): void {
+    if (this.deposit > 0) {
+      this.service.addCheckingDeposit(this.email, this.deposit).subscribe(() => this.getCheckingForUser())
+    }
+    this.deposit = null;
+  }
+
   backClicked() {
     this._location.back();
   }
