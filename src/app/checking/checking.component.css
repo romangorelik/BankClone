@@ -1,0 +1,79 @@
+.banner {
+  position: absolute;
+  top: 2%;
+  left: 15%;
+  width: 72%;
+  background: rgba(106,201,207, 0.3);
+  font-size: 48px;
+  height: 20%;
+  border-radius: 5px;
+  box-shadow: 1px 1px;
+  display: table; 
+  overflow: hidden;
+}
+
+.textBanner {
+  display: table-cell; 
+  vertical-align: middle;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: #074138;
+}
+
+.deposit {
+  position: absolute;
+  top: 25%;
+  left: 15%;
+  text-align: center;
+  width: 20%;
+}
+
+.depositHeader {
+  font-size: 35px;
+  margin-left: 9%;
+}
+
+.payBills {
+  position: absolute;
+  top: 25%;
+  left: 41%;
+  text-align: center;
+  width: 20%;
+}
+
+.payBillsHeader {
+  font-size: 35px;
+  margin-left: 5%;
+}
+
+.transfer {
+  position: absolute;
+  top: 25%;
+  left: 67%;
+  text-align: center;
+  width: 20%;
+}
+
+.transferHeader {
+  font-size: 35px;
+  margin-left: 1%;
+}
+
+.descriptions {
+  font-size: 18px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.input {
+  margin-top: 20px;
+  margin-left: 12px;
+}
+
+.back {
+  position: absolute;
+  top: 53%;
+  left: 15%;
+  background: orange;
+  color: white;
+}

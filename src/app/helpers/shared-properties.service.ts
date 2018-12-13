@@ -5,10 +5,10 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
   providedIn: 'root'
 })
 export class SharedPropertiesService {
+  constructor() { }
+
   private messageSource = new BehaviorSubject("");
   currentMessage = this.messageSource.asObservable();
-
-  constructor() { }
 
   changeMessage(sharedEmail: string) {
     this.messageSource.next(sharedEmail)

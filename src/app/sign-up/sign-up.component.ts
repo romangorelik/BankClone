@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
       .then(response => {
         this.balance.registerUser(this.email).subscribe()
         this.sharedService.changeRegisterMessage(this.email)
-        setTimeout(() => {this.router.navigateByUrl('/home')}, 1000)
+        this.router.navigateByUrl('/home')
         console.log("Created user successfully", response)
       })
       .catch(function(error) {
