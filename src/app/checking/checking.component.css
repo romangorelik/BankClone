@@ -4,7 +4,7 @@
   left: 15%;
   width: 72%;
   background: rgba(106,201,207, 0.3);
-  font-size: 48px;
+  font-size: 4vw;
   height: 20%;
   border-radius: 5px;
   box-shadow: 1px 1px;
@@ -29,8 +29,8 @@
 }
 
 .depositHeader {
-  font-size: 35px;
-  margin-left: 9%;
+  font-size: 3vw;
+  text-align: center;
 }
 
 .payBills {
@@ -42,8 +42,8 @@
 }
 
 .payBillsHeader {
-  font-size: 35px;
-  margin-left: 5%;
+  font-size: 3vw;
+  text-align: center;
 }
 
 .transfer {
@@ -55,12 +55,12 @@
 }
 
 .transferHeader {
-  font-size: 35px;
-  margin-left: 1%;
+  font-size: 3vw;
+  text-align: center;
 }
 
 .descriptions {
-  font-size: 18px;
+  font-size: 1.5vw;
   width: 100%;
   margin: 0 auto;
 }

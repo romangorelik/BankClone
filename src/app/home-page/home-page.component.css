@@ -7,8 +7,8 @@
 }
 
 .checkingHeader {
-  font-size: 35px;
-  margin-left: 25%;
+  font-size: 3vw;
+  text-align: center;
 }
 
 .logout {
@@ -26,8 +26,8 @@
 }
 
 .savingsHeader {
-  font-size: 35px;
-  margin-left: 27%;
+  font-size: 3vw;
+  text-align: center;
 }
 
 .banner {
@@ -36,7 +36,7 @@
   left: 15%;
   width: 72%;
   background: rgba(106,201,207, 0.3);
-  font-size: 48px;
+  font-size: 4vw;
   height: 20%;
   border-radius: 5px;
   box-shadow: 1px 1px;

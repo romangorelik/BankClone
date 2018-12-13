@@ -8,9 +8,9 @@
 
 <div class='checking'>
   <mat-card>
-    <mat-card-header class='checkingHeader'>
+    <div class='checkingHeader'>
       CHECKING
-    </mat-card-header>
+    </div>
     <mat-card-content>
       <p class='amounts'>
         {{checkings | currency: 'USD': 'symbol' : '1.0'}}
@@ -29,9 +29,9 @@
 
 <div class='saving'>
   <mat-card>
-    <mat-card-header class='savingsHeader'>
+    <div class='savingsHeader'>
       SAVINGS
-    </mat-card-header>
+    </div>
     <mat-card-content>
       <p class='amounts'>
         {{savings | currency: 'USD': 'symbol' : '1.0'}}
