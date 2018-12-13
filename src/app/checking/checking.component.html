@@ -1,7 +1,7 @@
 <div class='banner'>
   <div class='textBanner'>
     <div>
-      Checking Account: {{checking | currency:'USD'}}
+      Checking Account: {{checking | currency: 'USD': 'symbol' : '1.0'}}
     </div>
   </div>
 </div>
@@ -14,7 +14,7 @@
     <mat-card-content class='input'>
       <div>
         <mat-form-field>
-          <input matInput type="number" placeholder="Enter Amount" [(ngModel)]="deposit">
+          <input matInput type="number" min='0' placeholder="Enter Amount" [(ngModel)]="deposit">
         </mat-form-field>
         <button mat-icon-button (click)="depositToAccount()">
           <mat-icon>add_box</mat-icon>
@@ -39,9 +39,9 @@
     <mat-card-content class='input'>
       <div>
         <mat-form-field>
-          <input matInput type="number" placeholder="Enter Amount" [(ngModel)]="payBills">
+          <input matInput type="number" min='0' placeholder="Enter Amount" [(ngModel)]="payBills">
         </mat-form-field>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="subtractFromAccount()">
           <mat-icon>indeterminate_check_box</mat-icon>
         </button>
       </div>
@@ -63,9 +63,9 @@
     <mat-card-content class='input'>
       <div>
         <mat-form-field>
-          <input matInput type="number" placeholder="Enter Amount" [(ngModel)]="transfer">
+          <input matInput type="number" min='0' placeholder="Enter Amount" [(ngModel)]="transfer">
         </mat-form-field>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="transferToSavings()">
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>

@@ -1,7 +1,7 @@
 <div class='banner'>
   <div class='textBanner'>
     <div>
-      Total Earnings: {{total | currency:'USD'}}
+      Total Earnings: {{total | currency: 'USD': 'symbol' : '1.0'}}
     </div>
   </div>
 </div>
@@ -13,7 +13,7 @@
     </mat-card-header>
     <mat-card-content>
       <p class='amounts'>
-        {{checkings | currency:'USD'}}
+        {{checkings | currency: 'USD': 'symbol' : '1.0'}}
       </p>
       <p class='descriptions'>
         View your checking account.
@@ -34,7 +34,7 @@
     </mat-card-header>
     <mat-card-content>
       <p class='amounts'>
-        {{savings | currency:'USD'}}
+        {{savings | currency: 'USD': 'symbol' : '1.0'}}
       </p>
       <p class='descriptions'>
         View your savings account.

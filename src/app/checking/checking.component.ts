@@ -52,6 +52,27 @@ export class CheckingComponent implements OnInit {
     this.deposit = null;
   }
 
+  subtractFromAccount(): void {
+    if (this.checking > this.payBills) {
+      if (this.payBills > 0) {
+        this.service.payBillsChecking(this.email, this.payBills).subscribe(() => this.getCheckingForUser())
+      }
+    } else {
+      alert("Not enough balance in your checkings account!")
+    }
+    this.payBills = null;
+  }
+
+  transferToSavings(): void {
+    if (this.checking >= this.transfer) {
+      if (this.transfer > 0) {
+        this.service.transferFromChecking(this.email, this.transfer).subscribe(() => this.getCheckingForUser())
+      }
+    } else {
+      alert("Not enough balance in your checkings account!")
+    }
+  }
+
   backClicked() {
     this._location.back();
   }

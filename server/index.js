@@ -28,6 +28,7 @@ app.get('/savings', (req, res) => {
   let { email } = req.query
   pool.query(`SELECT savings FROM users.userinfo WHERE email='${email}'`)
   .then(response => res.send(response.rows[0]))
+  .catch(err => console.error(err))
 }) 
 
 app.post('/users', (req, res) => {
@@ -49,7 +50,48 @@ app.patch('/updatechecking', (req, res) => {
     .then(response => res.send(response))
     .catch(err => console.error(err))
   })
+  .catch(err => console.error(err))
+})
 
+app.patch('/paybills', (req, res) => {
+  let { email, bills } = req.body
+  let total;
+
+  pool.query(`SELECT checking FROM users.userinfo WHERE email='${email}'`)
+  .then(response => {
+    let amount = response.rows[0]
+    total = amount.checking - bills
+    pool.query(`UPDATE users.userinfo SET checking=${total} WHERE email='${email}'`)
+    .then(response => res.send(response))
+    .catch(err => console.error(err))
+  })
+  .catch(err => console.error(err))
+})
+
+app.patch('/transfertosavings', (req, res) => {
+  let { email, transfer } = req.body
+  let total;
+  let newTotal;
+
+  pool.query(`SELECT checking FROM users.userinfo WHERE email='${email}'`)
+  .then(response => {
+    let amount = response.rows[0]
+    total = amount.checking - transfer
+    pool.query(`UPDATE users.userinfo SET checking=${total} WHERE email='${email}'`)
+    .then(response => {
+      pool.query(`SELECT savings FROM users.userinfo WHERE email='${email}'`)
+      .then(response => {
+        let amount = response.rows[0]
+        newTotal = amount.savings + transfer
+        pool.query(`UPDATE users.userinfo SET savings=${newTotal} WHERE email='${email}'`)
+        .then(response => res.send(response))
+        .catch(err => console.error(err))
+      })
+      .catch(err => console.error(err))
+    })
+    .catch(err => console.error(err))
+  })
+  .catch(err => console.error(err))
 })
 
 const port = 3000
