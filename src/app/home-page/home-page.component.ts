@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import firebase from '../helpers/firebase.js'
 
 import { BalanceService } from '../helpers/balance.service';
-import { SharedPropertiesService } from '../helpers/shared-properties.service'
 
 @Component({
   selector: 'app-home-page',
@@ -16,27 +15,19 @@ export class HomePageComponent implements OnInit {
   savings: number = 0
   total: number = this.checkings + this.savings
 
-  constructor(private router: Router, private service: BalanceService, private sharedService: SharedPropertiesService) { }
+  constructor(private router: Router, private service: BalanceService) { }
 
   ngOnInit() {
-    this.checkWhichEmail();
-    this.getCheckingForUser();
-    this.getSavingsForUser();
+    this.checkIfUserLoggedIn();
   }
 
-  checkWhichEmail() {
-    let x;
-    let y;
-
-    this.sharedService.currentMessage.subscribe(sharedEmail => x = sharedEmail)
-    this.sharedService.regMessage.subscribe(sharedEmail => y = sharedEmail)
-
-    if (x.length > y.length) {
-      this.email = x
-    } else if (x.length < y.length) {
-      this.email = y
+  checkIfUserLoggedIn(): void {
+    if (firebase.auth().currentUser === null) {
+      this.router.navigateByUrl('/login')
     } else {
-      this.email = x
+      this.email = firebase.auth().currentUser.email;
+      this.getCheckingForUser();
+      this.getSavingsForUser();
     }
   }
 
@@ -67,8 +58,6 @@ export class HomePageComponent implements OnInit {
       .auth()
       .signOut()
       .then((response) => {
-        this.sharedService.changeMessage('')
-        this.sharedService.changeRegisterMessage('')
         this.router.navigateByUrl('/login')
       });
   }

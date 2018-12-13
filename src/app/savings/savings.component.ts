@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import firebase from '../helpers/firebase.js'
+import { Router } from '@angular/router';
 
 import { BalanceService } from '../helpers/balance.service';
-import { SharedPropertiesService } from '../helpers/shared-properties.service'
 
 @Component({
   selector: 'app-savings',
@@ -16,26 +17,18 @@ export class SavingsComponent implements OnInit {
   transfer: number;
   interest: number;
 
-  constructor(private _location: Location, private service: BalanceService, private sharedService: SharedPropertiesService) {}
+  constructor(private _location: Location, private service: BalanceService, private router: Router) {}
 
   ngOnInit() {
-    this.checkWhichEmail();
-    this.getSavingsForUser();
+    this.checkIfUserLoggedIn();
   }
 
-  checkWhichEmail(): void {
-    let x;
-    let y;
-
-    this.sharedService.currentMessage.subscribe(sharedEmail => x = sharedEmail)
-    this.sharedService.regMessage.subscribe(sharedEmail => y = sharedEmail)
-
-    if (x.length > y.length) {
-      this.email = x
-    } else if (x.length < y.length) {
-      this.email = y
+  checkIfUserLoggedIn(): void {
+    if (firebase.auth().currentUser === null) {
+      this.router.navigateByUrl('/login')
     } else {
-      this.email = x
+      this.email = firebase.auth().currentUser.email;
+      this.getSavingsForUser();
     }
   }
 
