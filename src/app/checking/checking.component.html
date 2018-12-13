@@ -7,7 +7,7 @@
 </div>
 
 <div class='deposit'>
-  <mat-card>
+  <mat-card class='cardHeight'>
     <div class='depositHeader'>
       DEPOSIT
     </div>
@@ -29,12 +29,15 @@
 </div>
 
 <div class='payBills'>
-  <mat-card>
+  <mat-card class='cardHeight'>
     <div class='payBillsHeader'>
       PAY BILLS
     </div>
-    <mat-card-content class='input'>
+    <mat-card-content class='input2'>
       <div>
+        <mat-form-field id='otherEmail'>
+          <input matInput type="text" placeholder="Other Account Email" [(ngModel)]="otherEmail">
+        </mat-form-field>
         <mat-form-field>
           <input matInput type="number" min='0' placeholder="Enter Amount" [(ngModel)]="payBills">
         </mat-form-field>
@@ -43,14 +46,14 @@
         </button>
       </div>
       <p class='descriptions'>
-        Pay bills from your checking account.
+        Pay bills from your account into another account.
       </p>
     </mat-card-content>
   </mat-card>
 </div>
 
 <div class='transfer'>
-  <mat-card>
+  <mat-card class='cardHeight'>
     <div class='transferHeader'>
       TRANSFER
     </div>

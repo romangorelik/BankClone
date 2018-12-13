@@ -66,14 +66,27 @@
 }
 
 .input {
-  margin-top: 20px;
+  margin-top: 95px;
+  margin-left: 12px;
+}
+
+#otherEmail {
+  margin-right: 42px;
+}
+
+.input2 {
+  margin-top: 40px;
   margin-left: 12px;
 }
 
 .back {
   position: absolute;
-  top: 53%;
+  top: 69%;
   left: 15%;
   background: orange;
   color: white;
+}
+
+.cardHeight {
+  height: 300px;
 }

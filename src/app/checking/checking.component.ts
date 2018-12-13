@@ -11,6 +11,7 @@ import { SharedPropertiesService } from '../helpers/shared-properties.service'
 })
 export class CheckingComponent implements OnInit {
   email: string;
+  otherEmail: string;
   checking: number;
   deposit: number;
   payBills: number;
@@ -55,12 +56,13 @@ export class CheckingComponent implements OnInit {
   subtractFromAccount(): void {
     if (this.checking > this.payBills) {
       if (this.payBills > 0) {
-        this.service.payBillsChecking(this.email, this.payBills).subscribe(() => this.getCheckingForUser())
+        this.service.payBillsChecking(this.email, this.payBills, this.otherEmail).subscribe(() => this.getCheckingForUser())
       }
     } else {
-      alert("Not enough balance in your checkings account!")
+      alert("Not enough balance in your checking account!")
     }
     this.payBills = null;
+    this.otherEmail = '';
   }
 
   transferToSavings(): void {
@@ -69,7 +71,7 @@ export class CheckingComponent implements OnInit {
         this.service.transferFromChecking(this.email, this.transfer).subscribe(() => this.getCheckingForUser())
       }
     } else {
-      alert("Not enough balance in your checkings account!")
+      alert("Not enough balance in your checking account!")
     }
   }
 

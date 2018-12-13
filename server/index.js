@@ -54,15 +54,24 @@ app.patch('/updatechecking', (req, res) => {
 })
 
 app.patch('/paybills', (req, res) => {
-  let { email, bills } = req.body
+  let { email, bills, otherEmail } = req.body
   let total;
+  let total2;
 
   pool.query(`SELECT checking FROM users.userinfo WHERE email='${email}'`)
   .then(response => {
     let amount = response.rows[0]
     total = amount.checking - bills
     pool.query(`UPDATE users.userinfo SET checking=${total} WHERE email='${email}'`)
-    .then(response => res.send(response))
+    .then(response => {
+      pool.query(`SELECT checking FROM users.userinfo WHERE email='${otherEmail}'`)
+      .then (response => {
+        let amount = response.rows[0]
+        total2 = amount.checking + bills
+        pool.query(`UPDATE users.userinfo SET checking=${total2} WHERE email='${otherEmail}'`)
+      })
+      res.send(response)
+    })
     .catch(err => console.error(err))
   })
   .catch(err => console.error(err))
