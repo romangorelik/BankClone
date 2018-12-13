@@ -53,6 +53,21 @@ app.patch('/updatechecking', (req, res) => {
   .catch(err => console.error(err))
 })
 
+app.patch('/updatesavings', (req, res) => {
+  let { email, deposit } = req.body
+  let total;
+
+  pool.query(`SELECT savings FROM users.userinfo WHERE email='${email}'`)
+  .then(response => {
+    let amount = response.rows[0]
+    total = amount.savings + deposit
+    pool.query(`UPDATE users.userinfo SET savings=${total} WHERE email='${email}'`)
+    .then(response => res.send(response))
+    .catch(err => console.error(err))
+  })
+  .catch(err => console.error(err))
+})
+
 app.patch('/paybills', (req, res) => {
   let { email, bills, otherEmail } = req.body
   let total;
@@ -93,6 +108,32 @@ app.patch('/transfertosavings', (req, res) => {
         let amount = response.rows[0]
         newTotal = amount.savings + transfer
         pool.query(`UPDATE users.userinfo SET savings=${newTotal} WHERE email='${email}'`)
+        .then(response => res.send(response))
+        .catch(err => console.error(err))
+      })
+      .catch(err => console.error(err))
+    })
+    .catch(err => console.error(err))
+  })
+  .catch(err => console.error(err))
+})
+
+app.patch('/transfertochecking', (req, res) => {
+  let { email, transfer } = req.body
+  let total;
+  let newTotal;
+
+  pool.query(`SELECT savings FROM users.userinfo WHERE email='${email}'`)
+  .then(response => {
+    let amount = response.rows[0]
+    total = amount.savings - transfer
+    pool.query(`UPDATE users.userinfo SET savings=${total} WHERE email='${email}'`)
+    .then(response => {
+      pool.query(`SELECT checking FROM users.userinfo WHERE email='${email}'`)
+      .then(response => {
+        let amount = response.rows[0]
+        newTotal = amount.checking + transfer
+        pool.query(`UPDATE users.userinfo SET checking=${newTotal} WHERE email='${email}'`)
         .then(response => res.send(response))
         .catch(err => console.error(err))
       })

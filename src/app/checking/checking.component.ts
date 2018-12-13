@@ -24,7 +24,7 @@ export class CheckingComponent implements OnInit {
     this.getCheckingForUser();
   }
 
-  checkWhichEmail() {
+  checkWhichEmail(): void {
     let x;
     let y;
 
@@ -68,14 +68,15 @@ export class CheckingComponent implements OnInit {
   transferToSavings(): void {
     if (this.checking >= this.transfer) {
       if (this.transfer > 0) {
-        this.service.transferFromChecking(this.email, this.transfer).subscribe(() => this.getCheckingForUser())
+        this.service.transferFromSavings(this.email, this.transfer).subscribe(() => this.getCheckingForUser())
       }
     } else {
       alert("Not enough balance in your checking account!")
     }
+    this.transfer = null;
   }
 
-  backClicked() {
+  backClicked(): void {
     this._location.back();
   }
 

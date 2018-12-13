@@ -24,6 +24,10 @@ export class BalanceService {
   addCheckingDeposit(accountEmail: string, amount: number): Observable<any> {
     return this.http.patch<any>("http://localhost:3000/updatechecking", {email: accountEmail, deposit: amount})
   }
+
+  addSavingsDeposit(accountEmail: string, amount: number): Observable<any> {
+    return this.http.patch<any>("http://localhost:3000/updatesavings", {email: accountEmail, deposit: amount})
+  }
   
   payBillsChecking(accountEmail: string, accountBills: number, otherEmail: string): Observable<any> {
     return this.http.patch<any>("http://localhost:3000/paybills", {email: accountEmail, bills: accountBills, otherEmail: otherEmail})
@@ -32,4 +36,9 @@ export class BalanceService {
   transferFromChecking(accountEmail: string, transferAmmount: number): Observable<any> {
     return this.http.patch<any>("http://localhost:3000/transfertosavings", {email: accountEmail, transfer: transferAmmount})
   }
+
+  transferFromSavings(accountEmail: string, transferAmmount: number): Observable<any> {
+    return this.http.patch<any>("http://localhost:3000/transfertochecking", {email: accountEmail, transfer: transferAmmount})
+  }
+
 }
