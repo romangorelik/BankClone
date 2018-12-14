@@ -41,4 +41,8 @@ export class BalanceService {
     return this.http.patch<any>("http://localhost:3000/transfertochecking", {email: accountEmail, transfer: transferAmmount})
   }
 
+  getAccountHistory(accountEmail: string): Observable<any> {
+    return this.http.get<any>('http://localhost:3000/history', { params: {email: accountEmail}})
+  }
+
 }

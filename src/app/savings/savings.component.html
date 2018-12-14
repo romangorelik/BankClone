@@ -1,70 +1,70 @@
 <div class='banner'>
-    <div class='textBanner'>
-      <div>
-        Savings Balance: {{savings | currency: 'USD': 'symbol' : '1.0'}}
-      </div>
+  <div class='textBanner'>
+    <div>
+      Savings Balance: {{savings | currency: 'USD': 'symbol' : '1.0'}}
     </div>
   </div>
+</div>
   
-  <div class='deposit'>
-    <mat-card class='cardHeight'>
-      <div class='depositHeader'>
-        DEPOSIT
+<div class='deposit'>
+  <mat-card class='cardHeight'>
+    <div class='depositHeader'>
+      DEPOSIT
+    </div>
+    <mat-card-content class='input'>
+      <div>
+        <mat-form-field>
+          <input matInput type="number" min='0' placeholder="Enter Amount" [(ngModel)]="deposit">
+        </mat-form-field>
+        <button mat-icon-button (click)='depositToAccount()'>
+          <mat-icon>add_box</mat-icon>
+        </button>
       </div>
-      <mat-card-content class='input'>
-        <div>
-          <mat-form-field>
-            <input matInput type="number" min='0' placeholder="Enter Amount" [(ngModel)]="deposit">
-          </mat-form-field>
-          <button mat-icon-button (click)='depositToAccount()'>
-            <mat-icon>add_box</mat-icon>
-          </button>
+
+      <p class='descriptions'>
+        Deposit funds into savings account.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class='earnings'>
+  <mat-card class='cardHeight'>
+    <div class='earningsHeader'>
+      EARNINGS
+    </div>
+    <mat-card-content class='interest'>
+      <div>
+        <div class='amount'>
+          {{interest | currency : "USD": 'symbol' : '1.0'}}
         </div>
-  
-        <p class='descriptions'>
-          Deposit funds into savings account.
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
-  <div class='earnings'>
-    <mat-card class='cardHeight'>
-      <div class='earningsHeader'>
-        EARNINGS
       </div>
-      <mat-card-content class='interest'>
-        <div>
-          <div class='amount'>
-            {{interest | currency : "USD": 'symbol' : '1.0'}}
-          </div>
-        </div>
-        <p class='descriptions'>
-          Check how much earnings you get per year based on total savings balance.
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
-  <div class='transfer'>
-    <mat-card class='cardHeight'>
-      <div class='transferHeader'>
-        TRANSFER
+      <p class='descriptions'>
+        Check how much earnings you get per year based on total savings balance.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class='transfer'>
+  <mat-card class='cardHeight'>
+    <div class='transferHeader'>
+      TRANSFER
+    </div>
+    <mat-card-content class='input'>
+      <div>
+        <mat-form-field>
+          <input matInput type="number" min='0' placeholder="Enter Amount" [(ngModel)]="transfer">
+        </mat-form-field>
+        <button mat-icon-button (click)="transferToChecking()">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
       </div>
-      <mat-card-content class='input'>
-        <div>
-          <mat-form-field>
-            <input matInput type="number" min='0' placeholder="Enter Amount" [(ngModel)]="transfer">
-          </mat-form-field>
-          <button mat-icon-button (click)="transferToChecking()">
-            <mat-icon>arrow_forward</mat-icon>
-          </button>
-        </div>
-        <p class='descriptions'>
-          Transfer funds into your checking account.
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
+      <p class='descriptions'>
+        Transfer funds into your checking account.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
     
-  <button mat-raised-button (click)='backClicked()' class='back'>Back</button>
+<button mat-raised-button (click)='backClicked()' class='back'>Back</button>

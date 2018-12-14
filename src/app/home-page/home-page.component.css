@@ -57,6 +57,13 @@
   margin: 10px 0px 10px 0px;
 }
 
+.history {
+  width: 64%;
+  position: absolute;
+  top: 67%;
+  left: 23%;
+}
+
 .descriptions {
   font-size: 18px;
   width: 90%;

@@ -13,7 +13,8 @@ export class HomePageComponent implements OnInit {
   email: string;
   checkings: number = 0
   savings: number = 0
-  total: number = this.checkings + this.savings
+  total: number = this.checkings + this.savings;
+  history: string[];
 
   constructor(private router: Router, private service: BalanceService) { }
 
@@ -28,6 +29,7 @@ export class HomePageComponent implements OnInit {
       this.email = firebase.auth().currentUser.email;
       this.getCheckingForUser();
       this.getSavingsForUser();
+      this.getHistory();
     }
   }
 
@@ -51,6 +53,12 @@ export class HomePageComponent implements OnInit {
 
   goToSavings(): void {
     this.router.navigateByUrl('/saving')
+  }
+
+  getHistory(): void {
+    this.service.getAccountHistory(this.email).subscribe(history => {
+      this.history = history
+    })
   }
 
   logOut() {

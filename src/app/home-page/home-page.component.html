@@ -48,6 +48,23 @@
   </mat-card>
 </div>
 
+<mat-accordion class='history'> 
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Account History
+      </mat-panel-title>
+      <mat-panel-description>
+        Check your account history
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div *ngFor='let item of history'>
+      {{item}}
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
 <div class='logout'>
   <button mat-raised-button color="warn" (click)='logOut()'>Logout</button>
 </div>
