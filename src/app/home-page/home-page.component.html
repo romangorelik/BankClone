@@ -59,8 +59,15 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <div *ngFor='let item of history'>
-      {{item}}
+    <div class='historyString'>
+      <div *ngFor='let item of historyString'>
+        {{item}}
+      </div>
+    </div>
+    <div class='historyTimes'>
+      <div *ngFor='let item of historyTimes'>
+        {{item | date : 'medium'}}
+      </div>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

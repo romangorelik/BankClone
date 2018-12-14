@@ -11,6 +11,21 @@ var corsOptions = {
   optionsSuccessStatus: 200 
 }
 
+// let formatDate = (date) => {
+//   var monthNames = [
+//     "January", "February", "March",
+//     "April", "May", "June", "July",
+//     "August", "September", "October",
+//     "November", "December"
+//   ];
+
+//   var day = date.getDate();
+//   var monthIndex = date.getMonth();
+//   var year = date.getFullYear();
+
+//   return day + ' ' + monthNames[monthIndex] + ' ' + year;
+// }
+
 app.use(bodyParser.json())
 app.use(cors(corsOptions))
 app.use(express.static(path.join(__dirname, 'dist')))
@@ -50,6 +65,7 @@ app.post('/users', (req, res) => {
 app.patch('/updatechecking', (req, res) => {
   let { email, deposit } = req.body
   let total;
+  let date = new Date();
 
   pool.query(`SELECT checking FROM users.userinfo WHERE email='${email}'`)
   .then(response => {
@@ -57,7 +73,7 @@ app.patch('/updatechecking', (req, res) => {
     total = amount.checking + deposit
     pool.query(`UPDATE users.userinfo SET checking=${total} WHERE email='${email}'`)
     .then(response => {
-      pool.query(`UPDATE users.userinfo SET history = array_prepend('Deposited ${deposit} into checking account', history) WHERE email='${email}'`)
+      pool.query(`UPDATE users.userinfo SET history = array_prepend('Deposited ${deposit} into checking account!${date}', history) WHERE email='${email}'`)
       res.send(response)
     })
     .catch(err => console.error(err))
@@ -68,6 +84,7 @@ app.patch('/updatechecking', (req, res) => {
 app.patch('/updatesavings', (req, res) => {
   let { email, deposit } = req.body
   let total;
+  let date = new Date();
 
   pool.query(`SELECT savings FROM users.userinfo WHERE email='${email}'`)
   .then(response => {
@@ -75,7 +92,7 @@ app.patch('/updatesavings', (req, res) => {
     total = amount.savings + deposit
     pool.query(`UPDATE users.userinfo SET savings=${total} WHERE email='${email}'`)
     .then(response => {
-      pool.query(`UPDATE users.userinfo SET history = array_prepend('Deposited ${deposit} into savings account', history) WHERE email='${email}'`)
+      pool.query(`UPDATE users.userinfo SET history = array_prepend('Deposited ${deposit} into savings account!${date}', history) WHERE email='${email}'`)
       res.send(response)
     })
     .catch(err => console.error(err))
@@ -87,6 +104,7 @@ app.patch('/paybills', (req, res) => {
   let { email, bills, otherEmail } = req.body
   let total;
   let total2;
+  let date = new Date();
 
   pool.query(`SELECT checking FROM users.userinfo WHERE email='${email}'`)
   .then(response => {
@@ -100,8 +118,8 @@ app.patch('/paybills', (req, res) => {
         total2 = amount.checking + bills
         pool.query(`UPDATE users.userinfo SET checking=${total2} WHERE email='${otherEmail}'`)
         .then(response => {
-          pool.query(`UPDATE users.userinfo SET history = array_prepend('Paid ${bills} to ${otherEmail}', history) WHERE email='${email}'`)
-          pool.query(`UPDATE users.userinfo SET history = array_prepend('Received ${bills} from ${email}', history) WHERE email='${otherEmail}'`)
+          pool.query(`UPDATE users.userinfo SET history = array_prepend('Paid ${bills} to ${otherEmail}!${date}', history) WHERE email='${email}'`)
+          pool.query(`UPDATE users.userinfo SET history = array_prepend('Received ${bills} from ${email}!${date}', history) WHERE email='${otherEmail}'`)
           res.send(response)
         })
 
@@ -117,6 +135,7 @@ app.patch('/transfertosavings', (req, res) => {
   let { email, transfer } = req.body
   let total;
   let newTotal;
+  let date = new Date();
 
   pool.query(`SELECT checking FROM users.userinfo WHERE email='${email}'`)
   .then(response => {
@@ -130,7 +149,7 @@ app.patch('/transfertosavings', (req, res) => {
         newTotal = amount.savings + transfer
         pool.query(`UPDATE users.userinfo SET savings=${newTotal} WHERE email='${email}'`)
         .then(response => {
-          pool.query(`UPDATE users.userinfo SET history = array_prepend('Transfered ${transfer} from checking account to savings account.', history) WHERE email='${email}'`)
+          pool.query(`UPDATE users.userinfo SET history = array_prepend('Transfered ${transfer} from checking account to savings account!${date}', history) WHERE email='${email}'`)
           res.send(response)
         })
         .catch(err => console.error(err))
@@ -146,6 +165,7 @@ app.patch('/transfertochecking', (req, res) => {
   let { email, transfer } = req.body
   let total;
   let newTotal;
+  let date = new Date();
 
   pool.query(`SELECT savings FROM users.userinfo WHERE email='${email}'`)
   .then(response => {
@@ -159,7 +179,7 @@ app.patch('/transfertochecking', (req, res) => {
         newTotal = amount.checking + transfer
         pool.query(`UPDATE users.userinfo SET checking=${newTotal} WHERE email='${email}'`)
         .then(response => {
-          pool.query(`UPDATE users.userinfo SET history = array_prepend('Transfered ${transfer} from savings account to checking account.', history) WHERE email='${email}'`)
+          pool.query(`UPDATE users.userinfo SET history = array_prepend('Transfered ${transfer} from savings account to checking account!${date}', history) WHERE email='${email}'`)
           res.send(response)
         })
         .catch(err => console.error(err))

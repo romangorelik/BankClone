@@ -69,3 +69,11 @@
   width: 90%;
   margin: 0 auto;
 }
+
+.historyString {
+  float: left
+}
+
+.historyTimes {
+  float: right
+}

@@ -15,6 +15,8 @@ export class HomePageComponent implements OnInit {
   savings: number = 0
   total: number = this.checkings + this.savings;
   history: string[];
+  historyString: string[] = []
+  historyTimes: string[] = []
 
   constructor(private router: Router, private service: BalanceService) { }
 
@@ -27,9 +29,9 @@ export class HomePageComponent implements OnInit {
       this.router.navigateByUrl('/login')
     } else {
       this.email = firebase.auth().currentUser.email;
-      this.getCheckingForUser();
-      this.getSavingsForUser();
-      this.getHistory();
+        this.getCheckingForUser();
+        this.getSavingsForUser();
+        this.getHistory();
     }
   }
 
@@ -58,7 +60,16 @@ export class HomePageComponent implements OnInit {
   getHistory(): void {
     this.service.getAccountHistory(this.email).subscribe(history => {
       this.history = history
+      this.getStringAndTime(this.history)
     })
+  }
+
+  getStringAndTime(arr: string[]): void {
+    for(let i = 0; i < this.history.length; i++) {
+      let split = this.history[i].split('!')
+      this.historyString.push(split[0])
+      this.historyTimes.push(split[1])
+    }
   }
 
   logOut() {
