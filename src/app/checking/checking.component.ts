@@ -61,7 +61,7 @@ export class CheckingComponent implements OnInit {
   transferToSavings(): void {
     if (this.checking >= this.transfer) {
       if (this.transfer > 0) {
-        this.service.transferFromSavings(this.email, this.transfer).subscribe(() => this.getCheckingForUser())
+        this.service.transferFromChecking(this.email, this.transfer).subscribe(() => this.getCheckingForUser())
       }
     } else {
       alert("Not enough balance in your checking account!")
